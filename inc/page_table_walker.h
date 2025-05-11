@@ -90,7 +90,8 @@ public:
       PSCL2{"PSCL2", PSCL2_SET, PSCL2_WAY, PSCL2_SET *PSCL2_WAY,
             0,       0,         0,         1}; // Translation from L5->L1
 
-  PAGE_TABLE_PAGE *L5; // CR3 register points to the base of this page.
+  // PAGE_TABLE_PAGE *L5; // CR3 register points to the base of this page.
+  PAGE_TABLE_PAGE *L3;
   uint64_t CR3_addr;   // This address will not have page offset bits.
   bool CR3_set;
 
@@ -103,7 +104,8 @@ public:
 
     CR3_addr = UINT64_MAX;
     CR3_set = false;
-    L5 = NULL;
+    // L5 = NULL;
+    L3 = NULL;
     rq_full = 0;
 
     PSCL5.fill_level = 0;

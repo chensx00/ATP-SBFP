@@ -1,31 +1,33 @@
 #!/bin/bash
 
-if [ "$#" -ne 17 ]; then
-    echo "Illegal number of parameters"
-    echo "Usage: ./build_champsim.sh [branch_pred] [l1i_pref] [l1d_pref] [l2c_pref] [llc_pref] [itlb_pref] [dtlb_pref] [stlb_pref] [btb_repl] [l1i_repl] [l1d_repl] [l2c_repl] [llc_repl] [itlb_repl] [dtlb_repl] [stlb_repl] [num_core]"
-    exit 1
-fi
+# if [ "$#" -ne 17 ]; then
+#     echo "Illegal number of parameters"
+#     echo "Usage: ./build_champsim.sh [branch_pred] [l1i_pref] [l1d_pref] [l2c_pref] [llc_pref] [itlb_pref] [dtlb_pref] [stlb_pref] [btb_repl] [l1i_repl] [l1d_repl] [l2c_repl] [llc_repl] [itlb_repl] [dtlb_repl] [stlb_repl] [num_core]"
+#     exit 1
+# fi
 
 # ChampSim configuration
-BRANCH=$1           # branch/*.bpred
-L1I_PREFETCHER=$2   # prefetcher/*.l1i_pref
-L1D_PREFETCHER=$3   # prefetcher/*.l1d_pref
-L2C_PREFETCHER=$4   # prefetcher/*.l2c_pref
-LLC_PREFETCHER=$5   # prefetcher/*.llc_pref
-ITLB_PREFETCHER=$6  # prefetcher/*.itlb_pref
-DTLB_PREFETCHER=$7  # prefetcher/*.dtlb_pref
-STLB_PREFETCHER=$8  # prefetcher/*.stlb_pref
+BRANCH="hashed_perceptron"           # branch/*.bpred
+L1I_PREFETCHER="no"   # prefetcher/*.l1i_pref
+L1D_PREFETCHER="next_line"    # prefetcher/*.l1d_pref
+L2C_PREFETCHER="ip_stride"   # prefetcher/*.l2c_pref
+LLC_PREFETCHER="no"   # prefetcher/*.llc_pref
+ITLB_PREFETCHER="no"  # prefetcher/*.itlb_pref
+DTLB_PREFETCHER="no"  # prefetcher/*.dtlb_pref
+#STLB_PREFETCHER="atp_h2p_stp_masp"  # prefetcher/*.stlb_pref
+#STLB_PREFETCHER="atp_h2p_stp"
+STLB_PREFETCHER="no"
 
-BTB_REPLACEMENT=$9 	   # prefetcher/*.btb_repl	
-L1I_REPLACEMENT=${10}   # prefetcher/*.l1i_repl
-L1D_REPLACEMENT=${11}   # prefetcher/*.l1d_repl
-L2C_REPLACEMENT=${12}   # prefetcher/*.l2c_repl
-LLC_REPLACEMENT=${13}   # prefetcher/*.llc_repl
-ITLB_REPLACEMENT=${14}  # prefetcher/*.itlb_repl
-DTLB_REPLACEMENT=${15}  # prefetcher/*.dtlb_repl
-STLB_REPLACEMENT=${16}  # prefetcher/*.stlb_repl
+BTB_REPLACEMENT="lru" 	   # prefetcher/*.btb_repl	
+L1I_REPLACEMENT="lru"   # prefetcher/*.l1i_repl
+L1D_REPLACEMENT="lru"   # prefetcher/*.l1d_repl
+L2C_REPLACEMENT="lru"   # prefetcher/*.l2c_repl
+LLC_REPLACEMENT="lru"   # prefetcher/*.llc_repl
+ITLB_REPLACEMENT="lru"  # prefetcher/*.itlb_repl
+DTLB_REPLACEMENT="lru"  # prefetcher/*.dtlb_repl
+STLB_REPLACEMENT="lru"  # prefetcher/*.stlb_repl
 
-NUM_CORE=${17}         # tested up to 8-core system
+NUM_CORE=1        # tested up to 8-core system
 
 ############## Some useful macros ###############
 BOLD=$(tput bold)

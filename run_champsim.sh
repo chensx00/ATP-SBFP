@@ -1,19 +1,29 @@
 #!/bin/bash
 
-if [ "$#" -lt 5 ]; then
-    echo "Illegal number of parameters"
-    echo "Usage: ./run_champsim.sh [BINARY] [N_WARM] [N_SIM] [TRACE_DIR_IN_TRACER] [TRACE] [OPTION]"
-    exit 1
-fi
+# if [ "$#" -lt 5 ]; then
+#     echo "Illegal number of parameters"
+#     echo "Usage: ./run_champsim.sh [BINARY] [N_WARM] [N_SIM] [TRACE_DIR_IN_TRACER] [TRACE] [OPTION]"
+#     exit 1
+# fi
 
 #Neelu: TRACE_DIR modified to be provided as a cmd line arg by me.
 
-TRACE_DIR=${4}
-BINARY=${1}
-N_WARM=${2}
-N_SIM=${3}
-TRACE=${5}
-OPTION=${6}
+# TRACE_DIR=${4}
+# BINARY=${1}
+# N_WARM=${2}
+# N_SIM=${3}
+# TRACE=${5}
+# OPTION=${6}
+OPTION=${1}
+TRACE=${2}
+TRACE_DIR='/home/csx/workland/mycode/AgileTLB/ATP-SBFP/trace/'
+BINARY='hashed_perceptron-no-next_line-ip_stride-no-no-no-'${OPTION}'-lru-lru-lru-lru-lru-lru-lru-lru-1core'
+N_WARM=50
+N_SIM=100
+# N_WARM=1
+# N_SIM=1
+
+
 
 # Sanity check
 if [ -z $TRACE_DIR ] || [ ! -d "$TRACE_DIR" ] ; then
@@ -38,10 +48,10 @@ if ! [[ $N_SIM =~ $re ]] || [ -z $N_SIM ] ; then
     exit 1
 fi
 
-if [ ! -f "$TRACE_DIR/$TRACE" ] ; then
-    echo "[ERROR] Cannot find a trace file: $TRACE_DIR/$TRACE"
-    exit 1
-fi
+# if [ ! -f "$TRACE_DIR/$TRACE" ] ; then
+#     echo "[ERROR] Cannot find a trace file: $TRACE_DIR/$TRACE"
+#     exit 1
+# fi
 
-mkdir -p results_${N_SIM}M
-(./bin/${BINARY} -warmup_instructions ${N_WARM}000000 -simulation_instructions ${N_SIM}000000 ${OPTION} -traces ${TRACE_DIR}/${TRACE}) &> results_${N_SIM}M/${TRACE}-${BINARY}${OPTION}.txt
+mkdir -p out/${OPTION}
+(./bin/${BINARY} -warmup_instructions ${N_WARM}000000 -simulation_instructions ${N_SIM}000000 ${OPTION} -traces ${TRACE_DIR}/${TRACE}.champsimtrace.xz) &> out/${OPTION}/${TRACE}.txt

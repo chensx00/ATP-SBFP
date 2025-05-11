@@ -4,7 +4,12 @@ void CACHE::stlb_prefetcher_initialize() {}
 
 void CACHE::stlb_prefetcher_operate(uint64_t addr, uint64_t ip,
                                     uint8_t cache_hit, uint8_t type,
-                                    uint64_t prefetch_id, uint8_t instruction) {
+                                    uint64_t prefetch_id, uint8_t instruction, uint32_t cpu) {
+
+}
+
+void CACHE::print_atp_stats(){
+    cout<<"no prefetcher "<<endl;
 
 }
 
