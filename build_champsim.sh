@@ -16,7 +16,10 @@ ITLB_PREFETCHER="no"  # prefetcher/*.itlb_pref
 DTLB_PREFETCHER="no"  # prefetcher/*.dtlb_pref
 #STLB_PREFETCHER="atp_h2p_stp_masp"  # prefetcher/*.stlb_pref
 #STLB_PREFETCHER="atp_h2p_stp"
-STLB_PREFETCHER="no"
+STLB_PREFETCHER="atp_masp"
+#STLB_PREFETCHER="atp_h2p"  # prefetcher/*.stlb_pref
+#STLB_PREFETCHER="atp_stp"
+#STLB_PREFETCHER="no"
 
 BTB_REPLACEMENT="lru" 	   # prefetcher/*.btb_repl	
 L1I_REPLACEMENT="lru"   # prefetcher/*.l1i_repl
